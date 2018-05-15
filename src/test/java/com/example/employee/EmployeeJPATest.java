@@ -99,4 +99,13 @@ public class EmployeeJPATest {
         Employee actualEmployee = employeeRepository.findTopByName("xiaohong");
         assertThat(actualEmployee).isNull();
     }
+
+    @Test
+    public void should_insert_employees_when_given_a_new_employee(){
+       Employee employee = new Employee("hhh",23,"male",2,10000);
+       employeeRepository.save(employee);
+       assertThat(employeeRepository.findFirstByName("hhh").getSalary()).isEqualTo(employee.getSalary());
+    }
+
+
 }

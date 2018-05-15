@@ -1,12 +1,11 @@
 package com.example.employee.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Employee {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false)
@@ -27,8 +26,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(Integer id, String name, Integer age, String gender, Integer companyId, Integer salary) {
-        this.id = id;
+    public Employee(String name, Integer age, String gender, Integer companyId, Integer salary) {
         this.name = name;
         this.age = age;
         this.gender = gender;

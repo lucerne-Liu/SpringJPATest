@@ -6,11 +6,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
-public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+public interface EmployeeRepository extends CrudRepository<Employee, Long> {
     //以下所有的*都代表变量
 
     //1.查询名字是*的第一个employee
@@ -43,7 +46,13 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     int modifyByIName(String newName, String name);
 
     //7.删除姓名是*的employee
-    @Modifying
-    @Query("delete from Employee where name = ?1")
-    void deleteByName(String name);
+//    @Modifying
+////    @Query("delete from Employee where name = ?1")
+////    void deleteByName(String name);
+    int deleteByName(String name);
+
+//    Employee save(Employee employee);
+
+    @Query(value = "select ",nativeQuery = true )
+    List<Employee> findEmployeesByCompanyName(String companyName);
 }
