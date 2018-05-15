@@ -46,10 +46,11 @@ public interface EmployeeRepository extends CrudRepository<Employee, Long> {
     int modifyByIName(String newName, String name);
 
     //7.删除姓名是*的employee
-//    @Modifying
-////    @Query("delete from Employee where name = ?1")
-////    void deleteByName(String name);
-    int deleteByName(String name);
+    @Modifying
+    @Query("delete from Employee where name = ?1")
+    void deleteByName(String name);
+
+    int removeByName(String name);
 
 //    Employee save(Employee employee);
 
